@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ABC123_HFT_2021221.Models
+namespace FV8H3R_HFT_2021221.Models
 {
     [Table("matches")]
     public class Matches
@@ -17,6 +17,7 @@ namespace ABC123_HFT_2021221.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id", TypeName = "int")]
         public int Id { get; set; }
+
         public int User_1 { get; set; }
         public int User_2 { get; set; }
     }

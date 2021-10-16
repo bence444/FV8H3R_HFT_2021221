@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FV8H3R_HFT_2021221.Models
 {
     [Table("messages")]
-    class Messages
+    public class Messages
     {
         //id, userid1, userid2, msg
 
@@ -18,9 +18,8 @@ namespace FV8H3R_HFT_2021221.Models
         [Column("id", TypeName = "int")]
         public int Id { get; set; }
 
-        public int User_1 { get; set; }
-        public int User_2 { get; set; }
+        public int MatchId { get; set; }
 
-        public string Message { get; set; }
+        public List<string> MessagesSent { get; set; }
     }
 }

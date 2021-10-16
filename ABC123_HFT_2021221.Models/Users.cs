@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FV8H3R_HFT_2021221.Models
 {
     [Table("users")]
-    class Users
+    public class Users
     {
         //id, name, regdate, availablelikes
 
