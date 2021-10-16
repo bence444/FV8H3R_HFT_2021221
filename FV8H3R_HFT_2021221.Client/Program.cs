@@ -6,6 +6,7 @@ namespace FV8H3R_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
+            Console.ReadLine();
         }
     }
 }

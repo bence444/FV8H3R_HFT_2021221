@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ABC123_HFT_2021221.Models\FV8H3R_HFT_2021221.Models.csproj" />
   </ItemGroup>
 
