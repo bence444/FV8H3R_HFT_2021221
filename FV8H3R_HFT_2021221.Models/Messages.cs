@@ -11,7 +11,7 @@ namespace FV8H3R_HFT_2021221.Models
     [Table("messages")]
     public class Messages
     {
-        //id, userid1, userid2, msg
+        //id, matchid (conversation), sender, msg, deleted
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,6 +20,9 @@ namespace FV8H3R_HFT_2021221.Models
 
         public int MatchId { get; set; }
 
-        public List<string> MessagesSent { get; set; }
+        public int SenderId { get; set; }
+
+        public string MessagesSent { get; set; }
+        public bool Deleted { get; set; }
     }
 }
