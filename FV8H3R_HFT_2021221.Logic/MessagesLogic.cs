@@ -3,8 +3,6 @@ using FV8H3R_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FV8H3R_HFT_2021221.Logic
 {
@@ -19,37 +17,40 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public void Create(Messages newMessage)
         {
-            throw new NotImplementedException();
+            if (newMessage.MessagesSent.Length < 1)
+                throw new ArgumentException(nameof(newMessage), "Message length must be at least 1 character");
+
+            msgRepo.Create(newMessage);
         }
 
         public void Delete(Messages forDelete)
         {
-            throw new NotImplementedException();
+            msgRepo.Delete(forDelete);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            msgRepo.Delete(id);
         }
 
         public IList<Messages> GetAll()
         {
-            throw new NotImplementedException();
+            return msgRepo.GetAll().ToList();
         }
 
         public Messages GetOne(int id)
         {
-            throw new NotImplementedException();
+            return msgRepo.GetOne(id);
         }
 
         public void Update(Messages updated)
         {
-            throw new NotImplementedException();
+            msgRepo.Update(updated);
         }
 
         public double AverageLength()
         {
-            throw new NotImplementedException();
+            return (double)msgRepo.GetAll().Average(x => x.MessagesSent.Length);
         }
     }
 }
