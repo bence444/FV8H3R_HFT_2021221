@@ -7,6 +7,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ABC123_HFT_2021221.Models\FV8H3R_HFT_2021221.Models.csproj" />
     <ProjectReference Include="..\ABC123_HFT_2021221.Repository\FV8H3R_HFT_2021221.Repository.csproj" />
+    <ProjectReference Include="..\FV8H3R_HFT_2021221.Models\FV8H3R_HFT_2021221.Models.csproj" />
+    <ProjectReference Include="..\FV8H3R_HFT_2021221.Repository\FV8H3R_HFT_2021221.Repository.csproj" />
   </ItemGroup>
 
 </Project>
