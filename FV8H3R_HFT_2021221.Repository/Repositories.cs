@@ -26,7 +26,7 @@ namespace FV8H3R_HFT_2021221.Repository
             ctx.SaveChanges();
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<T> Read()
         {
             return ctx.Set<T>();
         }

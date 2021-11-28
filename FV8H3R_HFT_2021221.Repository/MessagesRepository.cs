@@ -28,7 +28,7 @@ namespace FV8H3R_HFT_2021221.Repository
 
         public override Messages GetOne(int id)
         {
-            return GetAll().SingleOrDefault(x => x.Id == id);
+            return Read().SingleOrDefault(x => x.Id == id);
         }
 
         public override void Update(Messages updated)
