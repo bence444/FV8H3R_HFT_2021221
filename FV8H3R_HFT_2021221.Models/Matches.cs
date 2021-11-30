@@ -21,5 +21,6 @@ namespace FV8H3R_HFT_2021221.Models
         public int User_1 { get; set; }
         public int User_2 { get; set; }
         public List<Messages> Messages { get; set; }
+        public bool DeletedMatch { get; set; } = false;
     }
 }

@@ -5,37 +5,49 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Repository
 {
-    public class MessagesRepository : Repository<Messages>, IMessagesRepository
+    public class MessagesRepository : IRepository<Messages>
     {
-        public MessagesRepository(DbContext ctx) : base(ctx) { }
+        DbContext ctx;
 
-        public void UnsendMessage(int id)
+        public MessagesRepository(DbContext ctx)
         {
-            var msg = GetOne(id);
+            this.ctx = ctx;
+        }
 
-            if (msg == null)
-                throw new InvalidOperationException("Not found");
-
-            msg.Deleted = true;
+        public void Create(Messages entity)
+        {
+            ctx.Set<Messages>().Add(entity);
             ctx.SaveChanges();
         }
 
-        public override void Delete(int id)
+        public void Delete(Messages entity)
         {
-            ctx.Set<Messages>().Remove(GetOne(id));
+            ctx.Set<Messages>().Remove(entity);
             ctx.SaveChanges();
         }
 
-        public override Messages GetOne(int id)
+        public void Delete(int id)
         {
-            return Read().SingleOrDefault(x => x.Id == id);
+            Delete(ReadOne(id));
         }
 
-        public override void Update(Messages updated)
+        public IQueryable<Messages> ReadAll()
         {
-            var msgToUpdate = GetOne(updated.Id);
+            return ctx.Set<Messages>();
+        }
+
+        public Messages ReadOne(int id)
+        {
+            return ReadAll().FirstOrDefault(x => x.Id == id);
+        }
+
+        public void Update(Messages updated)
+        {
+            var msgToUpdate = ReadOne(updated.Id);
 
             msgToUpdate.MessagesSent = updated.MessagesSent;
+            msgToUpdate.Deleted = updated.Deleted;
+
             ctx.SaveChanges();
         }
     }

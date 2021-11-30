@@ -39,12 +39,12 @@ namespace FV8H3R_HFT_2021221.Data
             Users elon = new Users() { Id = 6, Name = "Elon Musk", Bio = "im rich", RegDate = new DateTime(2021, 4, 20) };
 
             Matches dl = new Matches() { Id = 1, User_1 = duri.Id, User_2 = laci.Id };
-            Matches hl = new Matches() { Id = 2, User_1 = hypy.Id, User_2 = luca.Id };
+            Matches hl = new Matches() { Id = 2, User_1 = hypy.Id, User_2 = luca.Id, DeletedMatch = true };
             Matches hp = new Matches() { Id = 3, User_1 = hypy.Id, User_2 = petra.Id };
             Matches pe = new Matches() { Id = 4, User_1 = petra.Id, User_2 = elon.Id };
 
-            Messages dlm = new Messages() { Id = 1, MatchId = dl.Id, SenderId = duri.Id, MessagesSent = "szia", Deleted = false};
-            Messages dlm2 = new Messages() { Id = 2, MatchId = dl.Id, SenderId = laci.Id, MessagesSent = "szia date?", Deleted = false };
+            Messages dlm = new Messages() { Id = 1, MatchId = dl.Id, SenderId = duri.Id, MessagesSent = "szia"};
+            Messages dlm2 = new Messages() { Id = 2, MatchId = dl.Id, SenderId = laci.Id, MessagesSent = "szia date?"};
 
             Messages hlm = new Messages() { Id = 3, MatchId = hl.Id, SenderId = hypy.Id, MessagesSent = "szia randi?", Deleted = true };
             Messages hlm2 = new Messages() { Id = 4, MatchId = hl.Id, SenderId = luca.Id, MessagesSent = "bocsi nem :(", Deleted = true };

@@ -9,22 +9,12 @@ namespace FV8H3R_HFT_2021221.Repository
 {
     public interface IRepository<T> where T : class
     {
-        T GetOne(int id);
-        IQueryable<T> Read();
+        T ReadOne(int id);
+        IQueryable<T> ReadAll();
 
         void Delete(T entity);
         void Delete(int id);
         void Create(T entity);
         void Update(T updated);
-    }
-
-    public interface IUserRepository : IRepository<Users>
-    {
-        void ChangeBio(int id, string text);
-    }
-
-    public interface IMessagesRepository : IRepository<Messages>
-    {
-        void UnsendMessage(int id);
     }
 }

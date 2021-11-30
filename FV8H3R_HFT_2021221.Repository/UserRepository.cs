@@ -5,39 +5,50 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Repository
 {
-    public class UserRepository : Repository<Users>, IUserRepository
+    public class UserRepository : IRepository<Users>
     {
-        public UserRepository(DbContext ctx) : base(ctx) { }
+        DbContext ctx;
 
-        public void ChangeBio(int id, string text)
+        public UserRepository(DbContext ctx)
         {
-            var user = GetOne(id);
+            this.ctx = ctx;
+        }
 
-            if (user == null)
-                throw new InvalidOperationException("No user found");
-
-            user.Bio = text;
-
+        public void Create(Users entity)
+        {
+            ctx.Set<Users>().Add(entity);
             ctx.SaveChanges();
         }
 
-        public override void Delete(int id)
+        public void Delete(Users entity)
         {
-            Delete(GetOne(id));
+            ctx.Set<Users>().Remove(entity);
+            ctx.SaveChanges();
         }
 
-        public override Users GetOne(int id)
+        public void Delete(int id)
         {
-            return Read().SingleOrDefault(x => x.Id == id);
+            Delete(ReadOne(id));
         }
 
-        public override void Update(Users updated)
+        public IQueryable<Users> ReadAll()
         {
-            var userToUpdate = GetOne(updated.Id);
+            return ctx.Set<Users>();
+        }
+
+        public Users ReadOne(int id)
+        {
+            return ReadAll().FirstOrDefault(x => x.Id == id);
+        }
+
+        public void Update(Users updated)
+        {
+            var userToUpdate = ReadOne(updated.Id);
 
             userToUpdate.Name = updated.Name;
+            userToUpdate.Bio = updated.Bio;
             userToUpdate.AvailableLikes = updated.AvailableLikes;
-            userToUpdate.RegDate = updated.RegDate;
+            
             ctx.SaveChanges();
         }
     }
