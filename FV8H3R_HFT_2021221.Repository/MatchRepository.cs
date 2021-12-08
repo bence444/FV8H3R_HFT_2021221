@@ -1,4 +1,5 @@
-﻿using FV8H3R_HFT_2021221.Models;
+﻿using FV8H3R_HFT_2021221.Data;
+using FV8H3R_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -7,9 +8,9 @@ namespace FV8H3R_HFT_2021221.Repository
 {
     public class MatchRepository : IRepository<Match>
     {
-        DbContext ctx;
+        TinderDbContext ctx;
 
-        public MatchRepository(DbContext ctx)
+        public MatchRepository(TinderDbContext ctx)
         {
             this.ctx = ctx;
         }
