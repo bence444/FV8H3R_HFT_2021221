@@ -31,6 +31,22 @@ namespace FV8H3R_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Match>(e => {
+                e
+                .HasOne(x => x._User_1)
+                .WithMany(y => y.Matches)
+                .HasForeignKey(x => x.User_1)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Match>(e => {
+                e
+                .HasOne(x => x._User_2)
+                .WithMany(y => y.Matches)
+                .HasForeignKey(x => x.User_2)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
+
             User duri = new User() { Id = 1, Name = "Dorottya", Bio = "van egy kutyám", RegDate = new DateTime(2020, 6, 2) };
             User laci = new User() { Id = 2, Name = "Laszlo", Bio = "", RegDate = new DateTime(2020, 6, 10) };
             User hypy = new User() { Id = 3, Name = "Tamas", Bio = "eszek s*gget", RegDate = new DateTime(2020, 6, 11) };

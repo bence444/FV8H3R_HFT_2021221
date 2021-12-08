@@ -29,7 +29,7 @@ namespace FV8H3R_HFT_2021221.Models
         public int AvailableLikes { get; set; }
 
         [NotMapped]
-        public virtual ICollection<Match> matches { get; set; }
+        public virtual ICollection<Match> Matches { get; set; }
 
         public User()
         {
