@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FV8H3R_HFT_2021221.Logic;
+using FV8H3R_HFT_2021221.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,36 +12,41 @@ namespace FV8H3R_HFT_2021221.Endpoint.Controllers
     [ApiController]
     public class StatController : ControllerBase
     {
-        // GET: api/<StatController>
+        StatsLogic logic;
+
+        public StatController(StatsLogic logic)
+        {
+            this.logic = logic;
+        }
+
+       [HttpGet]
+       public IEnumerable<User> userwdm()
+       {
+            return logic.UsersWithDeletedMatch();
+       }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Message> highlikes()
         {
-            return new string[] { "value1", "value2" };
+            return logic.HighlikesByMsgId();
         }
 
-        // GET api/<StatController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet]
+        public IEnumerable<Message> lastchat()
         {
-            return "value";
+            return logic.MsgsToLastMatch();
         }
 
-        // POST api/<StatController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet]
+        public IEnumerable<Message> msgof(string name)
         {
+            return logic.MessageOf(name);
         }
 
-        // PUT api/<StatController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet]
+        public IEnumerable<User> issues()
         {
-        }
-
-        // DELETE api/<StatController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return logic.UsersWithTrustIssues();
         }
     }
 }

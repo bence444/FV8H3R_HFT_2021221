@@ -23,12 +23,6 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public IEnumerable<User> UsersWithDeletedMatch()
         {
-            /* var ur = from user in userRepo.ReadAll()
-                     join match in matchRepo.ReadAll() on new { u1 = user.Id, u2 = user2.Id } equals new { match.User_1, match.User_2 }
-                     //join match2 in matchRepo.ReadAll() on user.Id equals match2.User_2
-                     where match.DeletedMatch //&& match2.DeletedMatch
-                     select user; */
-
             var ur = from user in userRepo.ReadAll()
                      join match in matchRepo.ReadAll() on user.Id equals match.User_1
                      where match.DeletedMatch
