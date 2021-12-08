@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ABC123_HFT_2021221.Models\FV8H3R_HFT_2021221.Models.csproj" />
     <ProjectReference Include="..\FV8H3R_HFT_2021221.Models\FV8H3R_HFT_2021221.Models.csproj" />
   </ItemGroup>
 

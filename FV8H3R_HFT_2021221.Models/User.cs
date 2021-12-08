@@ -11,8 +11,6 @@ namespace FV8H3R_HFT_2021221.Models
     [Table("users")]
     public class User
     {
-        //id, name, regdate, availablelikes
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -33,7 +31,7 @@ namespace FV8H3R_HFT_2021221.Models
 
         public User()
         {
-            matches = new HashSet<Match>();
+            Matches = new HashSet<Match>();
         }
     }
 }
