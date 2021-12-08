@@ -35,7 +35,7 @@ namespace FV8H3R_HFT_2021221.Repository
 
         public IQueryable<Message> ReadAll()
         {
-            return ctx.Set<Message>();
+            return ctx.Messages.AsQueryable();
         }
 
         public Message ReadOne(int id)
@@ -43,9 +43,9 @@ namespace FV8H3R_HFT_2021221.Repository
             return ReadAll().FirstOrDefault(x => x.Id == id);
         }
 
-        public void Update(Message updated)
+        public void Update(int id, Message updated)
         {
-            var msgToUpdate = ReadOne(updated.Id);
+            var msgToUpdate = ReadOne(id);
 
             msgToUpdate.MessagesSent = updated.MessagesSent;
             msgToUpdate.Deleted = updated.Deleted;

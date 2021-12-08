@@ -44,9 +44,9 @@ namespace FV8H3R_HFT_2021221.Repository
         }
 
 
-        public void Update(User updated)
+        public void Update(int id, User updated)
         {
-            var userToUpdate = ReadOne(updated.Id);
+            var userToUpdate = ReadOne(id);
 
             userToUpdate.Name = updated.Name;
             userToUpdate.Bio = updated.Bio;

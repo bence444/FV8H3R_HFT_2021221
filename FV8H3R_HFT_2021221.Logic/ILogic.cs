@@ -7,7 +7,7 @@ namespace FV8H3R_HFT_2021221.Logic
     {
         T ReadOne(int id);
         IList<T> ReadAll();
-        void Update(T updated);
+        void Update(int id, T updated);
         void Create(T newMessage);
         void Delete(T forDelete);
         void Delete(int id);

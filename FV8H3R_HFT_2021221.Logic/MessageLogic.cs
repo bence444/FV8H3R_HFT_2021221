@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Logic
 {
-    public class MessagesLogic : ILogic<Message>
+    public class MessageLogic : ILogic<Message>
     {
         IRepository<Message> msgRepo;
 
-        public MessagesLogic(IRepository<Message> msgRepo)
+        public MessageLogic(IRepository<Message> msgRepo)
         {
             this.msgRepo = msgRepo;
         }
@@ -43,9 +43,9 @@ namespace FV8H3R_HFT_2021221.Logic
             return msgRepo.ReadOne(id);
         }
 
-        public void Update(Message updated)
+        public void Update(int id, Message updated)
         {
-            msgRepo.Update(updated);
+            msgRepo.Update(id, updated);
         }
 
         public double AverageLength()

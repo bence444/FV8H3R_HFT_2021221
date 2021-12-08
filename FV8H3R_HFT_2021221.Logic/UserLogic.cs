@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace FV8H3R_HFT_2021221.Logic
 {
-    class UsersLogic : ILogic<User>
+    public class UserLogic : ILogic<User>
     {
         IRepository<User> userRepo;
 
-        public UsersLogic(IRepository<User> userRepo)
+        public UserLogic(IRepository<User> userRepo)
         {
             this.userRepo = userRepo;
         }
@@ -45,9 +45,9 @@ namespace FV8H3R_HFT_2021221.Logic
             return userRepo.ReadOne(id);
         }
 
-        public void Update(User updated)
+        public void Update(int id, User updated)
         {
-            userRepo.Update(updated);
+            userRepo.Update(id, updated);
         }
     }
 }

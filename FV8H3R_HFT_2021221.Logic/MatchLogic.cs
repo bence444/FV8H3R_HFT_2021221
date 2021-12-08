@@ -42,7 +42,7 @@ namespace FV8H3R_HFT_2021221.Logic
             throw new NotImplementedException();
         }
 
-        public void Update(Match updated)
+        public void Update(int id, Match updated)
         {
             throw new NotImplementedException();
         }
