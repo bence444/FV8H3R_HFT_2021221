@@ -77,17 +77,17 @@ namespace FV8H3R_HFT_2021221.Test
 
         public void UpdateUserTest()
         {
-            userRepo.Setup(x => x.Update(It.IsAny<int>, It.IsAny<User>()));
+            userRepo.Setup(x => x.Update(It.IsAny<int>(), It.IsAny<User>()));
 
             UserLogic userLog = new UserLogic(userRepo.Object);
 
-            var testUser = new User() { Name = "Teszt Elek", Bio = "haha" };
+            var testUser = new User() { Id = 1, Name = "Teszt Elek", Bio = "haha" };
             userLog.Create(testUser);
 
             testUser.Bio = "im scared jk";
-            userLog.Update(testUser);
+            userLog.Update(testUser.Id, testUser);
 
-            userRepo.Verify(x => x.Update(It.IsAny<int>, It.IsAny<User>()));
+            userRepo.Verify(x => x.Update(It.IsAny<int>(), It.IsAny<User>()));
         }
     }
 }

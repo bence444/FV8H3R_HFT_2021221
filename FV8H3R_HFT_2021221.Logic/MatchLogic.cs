@@ -44,7 +44,7 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public void Update(int id, Match updated)
         {
-            throw new NotImplementedException();
+            matchRepo.Update(id, updated);
         }
     }
 }

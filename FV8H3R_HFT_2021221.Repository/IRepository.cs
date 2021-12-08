@@ -15,6 +15,6 @@ namespace FV8H3R_HFT_2021221.Repository
         void Delete(T entity);
         void Delete(int id);
         void Create(T entity);
-        void Update(T updated);
+        void Update(int id, T updated);
     }
 }
