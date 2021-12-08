@@ -19,27 +19,27 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public void Create(Match newMessage)
         {
-            throw new NotImplementedException();
+            matchRepo.Create(newMessage);
         }
 
         public void Delete(Match forDelete)
         {
-            throw new NotImplementedException();
+            matchRepo.Delete(forDelete);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            matchRepo.Delete(id);
         }
 
         public IList<Match> ReadAll()
         {
-            throw new NotImplementedException();
+            return matchRepo.ReadAll().ToList();
         }
 
         public Match ReadOne(int id)
         {
-            throw new NotImplementedException();
+            return matchRepo.ReadOne(id);
         }
 
         public void Update(int id, Match updated)

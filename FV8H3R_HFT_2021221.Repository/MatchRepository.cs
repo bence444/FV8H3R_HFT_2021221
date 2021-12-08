@@ -47,7 +47,6 @@ namespace FV8H3R_HFT_2021221.Repository
         {
             var matchToUpdate = ReadOne(id);
 
-            matchToUpdate.Messages = updated.Messages;
             matchToUpdate.DeletedMatch = updated.DeletedMatch;
 
             ctx.SaveChanges();
