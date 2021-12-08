@@ -39,13 +39,13 @@ namespace FV8H3R_HFT_2021221.Data
                 .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity<Match>(e => {
+            /* modelBuilder.Entity<Match>(e => {
                 e
                 .HasOne(x => x._User_2)
                 .WithMany(y => y.Matches)
                 .HasForeignKey(x => x.User_2)
                 .OnDelete(DeleteBehavior.Cascade);
-            });
+            }); */
 
             User duri = new User() { Id = 1, Name = "Dorottya", Bio = "van egy kutyám", RegDate = new DateTime(2020, 6, 2) };
             User laci = new User() { Id = 2, Name = "Laszlo", Bio = "", RegDate = new DateTime(2020, 6, 10) };
@@ -65,11 +65,11 @@ namespace FV8H3R_HFT_2021221.Data
             Message hlm = new Message() { Id = 3, MatchId = hl.Id, SenderId = hypy.Id, MessageSent = "szia randi?", Deleted = true };
             Message hlm2 = new Message() { Id = 4, MatchId = hl.Id, SenderId = luca.Id, MessageSent = "bocsi nem :(", Deleted = true };
 
-            dl.Messages.Add(dlm);
+            /* dl.Messages.Add(dlm);
             dl.Messages.Add(dlm2);
 
             hl.Messages.Add(hlm);
-            hl.Messages.Add(hlm2);
+            hl.Messages.Add(hlm2); */
 
             modelBuilder.Entity<User>().HasData(duri, laci, hypy, luca, petra, elon);
             modelBuilder.Entity<Match>().HasData(dl, hl, hp, pe);

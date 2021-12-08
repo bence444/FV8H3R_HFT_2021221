@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Repository
 {
-    public class MessagesRepository : IRepository<Message>, IMessageRepository
+    public class MessageRepository : IRepository<Message>, IMessageRepository
     {
         TinderDbContext ctx;
 
-        public MessagesRepository(TinderDbContext ctx)
+        public MessageRepository(TinderDbContext ctx)
         {
             this.ctx = ctx;
         }
