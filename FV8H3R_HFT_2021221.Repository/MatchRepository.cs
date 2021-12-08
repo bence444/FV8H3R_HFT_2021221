@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Repository
 {
-    public class MatchRepository : IRepository<Matches>
+    public class MatchRepository : IRepository<Match>
     {
         DbContext ctx;
 
@@ -14,15 +14,15 @@ namespace FV8H3R_HFT_2021221.Repository
             this.ctx = ctx;
         }
 
-        public void Create(Matches entity)
+        public void Create(Match entity)
         {
-            ctx.Set<Matches>().Add(entity);
+            ctx.Set<Match>().Add(entity);
             ctx.SaveChanges();
         }
 
-        public void Delete(Matches entity)
+        public void Delete(Match entity)
         {
-            ctx.Set<Matches>().Remove(entity);
+            ctx.Set<Match>().Remove(entity);
             ctx.SaveChanges();
         }
 
@@ -31,17 +31,17 @@ namespace FV8H3R_HFT_2021221.Repository
             Delete(ReadOne(id));
         }
 
-        public IQueryable<Matches> ReadAll()
+        public IQueryable<Match> ReadAll()
         {
-            return ctx.Set<Matches>();
+            return ctx.Set<Match>();
         }
 
-        public Matches ReadOne(int id)
+        public Match ReadOne(int id)
         {
             return ReadAll().FirstOrDefault(x => x.Id == id);
         }
 
-        public void Update(Matches updated)
+        public void Update(Match updated)
         {
             var matchToUpdate = ReadOne(updated.Id);
 

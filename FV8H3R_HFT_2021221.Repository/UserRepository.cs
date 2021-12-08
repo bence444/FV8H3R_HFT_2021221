@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Repository
 {
-    public class UserRepository : IRepository<Users>
+    public class UserRepository : IRepository<User>
     {
         DbContext ctx;
 
@@ -14,15 +14,15 @@ namespace FV8H3R_HFT_2021221.Repository
             this.ctx = ctx;
         }
 
-        public void Create(Users entity)
+        public void Create(User entity)
         {
-            ctx.Set<Users>().Add(entity);
+            ctx.Set<User>().Add(entity);
             ctx.SaveChanges();
         }
 
-        public void Delete(Users entity)
+        public void Delete(User entity)
         {
-            ctx.Set<Users>().Remove(entity);
+            ctx.Set<User>().Remove(entity);
             ctx.SaveChanges();
         }
 
@@ -31,17 +31,17 @@ namespace FV8H3R_HFT_2021221.Repository
             Delete(ReadOne(id));
         }
 
-        public IQueryable<Users> ReadAll()
+        public IQueryable<User> ReadAll()
         {
-            return ctx.Set<Users>();
+            return ctx.Set<User>();
         }
 
-        public Users ReadOne(int id)
+        public User ReadOne(int id)
         {
             return ReadAll().FirstOrDefault(x => x.Id == id);
         }
 
-        public void Update(Users updated)
+        public void Update(User updated)
         {
             var userToUpdate = ReadOne(updated.Id);
 

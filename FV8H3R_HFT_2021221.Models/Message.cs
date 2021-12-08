@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FV8H3R_HFT_2021221.Models
 {
     [Table("messages")]
-    public class Messages
+    public class Message
     {
         //id, matchid (conversation), sender, msg, deleted
 

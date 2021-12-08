@@ -10,9 +10,9 @@ namespace FV8H3R_HFT_2021221.Data
 {
     class TinderDbContext : DbContext
     {
-        public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Messages> Messages { get; set; }
-        public virtual DbSet<Matches> Matches { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Match> Matches { get; set; }
 
         public TinderDbContext()
         {
@@ -31,23 +31,23 @@ namespace FV8H3R_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Users duri = new Users() { Id = 1, Name = "Dorottya", Bio = "van egy kutyám", RegDate = new DateTime(2020, 6, 2) };
-            Users laci = new Users() { Id = 2, Name = "Laszlo", Bio = "", RegDate = new DateTime(2020, 6, 10) };
-            Users hypy = new Users() { Id = 3, Name = "Tamas", Bio = "eszek s*gget", RegDate = new DateTime(2020, 6, 11) };
-            Users luca = new Users() { Id = 4, Name = "Luca", Bio = "", RegDate = new DateTime(2020, 6, 20) };
-            Users petra = new Users() { Id = 5, Name = "Petra", Bio = "anal korrepet keresek", RegDate = new DateTime(2020, 7, 22) };
-            Users elon = new Users() { Id = 6, Name = "Elon Musk", Bio = "im rich", RegDate = new DateTime(2021, 4, 20) };
+            User duri = new User() { Id = 1, Name = "Dorottya", Bio = "van egy kutyám", RegDate = new DateTime(2020, 6, 2) };
+            User laci = new User() { Id = 2, Name = "Laszlo", Bio = "", RegDate = new DateTime(2020, 6, 10) };
+            User hypy = new User() { Id = 3, Name = "Tamas", Bio = "eszek s*gget", RegDate = new DateTime(2020, 6, 11) };
+            User luca = new User() { Id = 4, Name = "Luca", Bio = "", RegDate = new DateTime(2020, 6, 20) };
+            User petra = new User() { Id = 5, Name = "Petra", Bio = "anal korrepet keresek", RegDate = new DateTime(2020, 7, 22) };
+            User elon = new User() { Id = 6, Name = "Elon Musk", Bio = "im rich", RegDate = new DateTime(2021, 4, 20) };
 
-            Matches dl = new Matches() { Id = 1, User_1 = duri.Id, User_2 = laci.Id };
-            Matches hl = new Matches() { Id = 2, User_1 = hypy.Id, User_2 = luca.Id, DeletedMatch = true };
-            Matches hp = new Matches() { Id = 3, User_1 = hypy.Id, User_2 = petra.Id };
-            Matches pe = new Matches() { Id = 4, User_1 = petra.Id, User_2 = elon.Id };
+            Match dl = new Match() { Id = 1, User_1 = duri.Id, User_2 = laci.Id };
+            Match hl = new Match() { Id = 2, User_1 = hypy.Id, User_2 = luca.Id, DeletedMatch = true };
+            Match hp = new Match() { Id = 3, User_1 = hypy.Id, User_2 = petra.Id };
+            Match pe = new Match() { Id = 4, User_1 = petra.Id, User_2 = elon.Id };
 
-            Messages dlm = new Messages() { Id = 1, MatchId = dl.Id, SenderId = duri.Id, MessagesSent = "szia"};
-            Messages dlm2 = new Messages() { Id = 2, MatchId = dl.Id, SenderId = laci.Id, MessagesSent = "szia date?"};
+            Message dlm = new Message() { Id = 1, MatchId = dl.Id, SenderId = duri.Id, MessagesSent = "szia"};
+            Message dlm2 = new Message() { Id = 2, MatchId = dl.Id, SenderId = laci.Id, MessagesSent = "szia date?"};
 
-            Messages hlm = new Messages() { Id = 3, MatchId = hl.Id, SenderId = hypy.Id, MessagesSent = "szia randi?", Deleted = true };
-            Messages hlm2 = new Messages() { Id = 4, MatchId = hl.Id, SenderId = luca.Id, MessagesSent = "bocsi nem :(", Deleted = true };
+            Message hlm = new Message() { Id = 3, MatchId = hl.Id, SenderId = hypy.Id, MessagesSent = "szia randi?", Deleted = true };
+            Message hlm2 = new Message() { Id = 4, MatchId = hl.Id, SenderId = luca.Id, MessagesSent = "bocsi nem :(", Deleted = true };
 
             dl.Messages.Add(dlm);
             dl.Messages.Add(dlm2);
@@ -55,9 +55,9 @@ namespace FV8H3R_HFT_2021221.Data
             hl.Messages.Add(hlm);
             hl.Messages.Add(hlm2);
 
-            modelBuilder.Entity<Users>().HasData(duri, laci, hypy, luca, petra, elon);
-            modelBuilder.Entity<Matches>().HasData(dl, hl, hp, pe);
-            modelBuilder.Entity<Messages>().HasData(dlm, hlm);
+            modelBuilder.Entity<User>().HasData(duri, laci, hypy, luca, petra, elon);
+            modelBuilder.Entity<Match>().HasData(dl, hl, hp, pe);
+            modelBuilder.Entity<Message>().HasData(dlm, hlm);
         }
     }
 }

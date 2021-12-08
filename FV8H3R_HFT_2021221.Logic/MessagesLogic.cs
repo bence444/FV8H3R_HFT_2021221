@@ -6,16 +6,16 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Logic
 {
-    public class MessagesLogic : IMessagesLogic
+    public class MessagesLogic : ILogic
     {
-        IMessagesRepository msgRepo;
+        IRepository<Message> msgRepo;
 
-        public MessagesLogic(IMessagesRepository msgRepo)
+        public MessagesLogic(IRepository<Message> msgRepo)
         {
             this.msgRepo = msgRepo;
         }
 
-        public void Create(Messages newMessage)
+        public void Create(Message newMessage)
         {
             if (newMessage.MessagesSent.Length < 1)
                 throw new ArgumentException(nameof(newMessage), "Message length must be at least 1 character");
@@ -23,7 +23,7 @@ namespace FV8H3R_HFT_2021221.Logic
             msgRepo.Create(newMessage);
         }
 
-        public void Delete(Messages forDelete)
+        public void Delete(Message forDelete)
         {
             msgRepo.Delete(forDelete);
         }
@@ -33,24 +33,24 @@ namespace FV8H3R_HFT_2021221.Logic
             msgRepo.Delete(id);
         }
 
-        public IList<Messages> GetAll()
+        public IList<Message> ReadAll()
         {
-            return msgRepo.GetAll().ToList();
+            return msgRepo.ReadAll().ToList();
         }
 
-        public Messages GetOne(int id)
+        public Message ReadOne(int id)
         {
-            return msgRepo.GetOne(id);
+            return msgRepo.ReadOne(id);
         }
 
-        public void Update(Messages updated)
+        public void Update(Message updated)
         {
             msgRepo.Update(updated);
         }
 
         public double AverageLength()
         {
-            return (double)msgRepo.GetAll().Average(x => x.MessagesSent.Length);
+            return (double)msgRepo.ReadAll().Average(x => x.MessagesSent.Length);
         }
     }
 }

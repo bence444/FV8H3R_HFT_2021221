@@ -8,25 +8,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FV8H3R_HFT_2021221.Models
 {
-    [Table("users")]
-    public class Users
+    [Table("matches")]
+    public class Match
     {
-        //id, name, regdate, availablelikes
+        //id, userid1, userid2
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id", TypeName = "int")]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
-
-        [MaxLength(500)]
-        public string Bio { get; set; }
-
-        public DateTime RegDate { get; set; }
-
-        public int AvailableLikes { get; set; }
+        public int User_1 { get; set; }
+        public int User_2 { get; set; }
+        public List<Message> Messages { get; set; }
+        public bool DeletedMatch { get; set; } = false;
     }
 }
