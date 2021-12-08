@@ -15,7 +15,6 @@ namespace FV8H3R_HFT_2021221.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id", TypeName = "int")]
         public int Id { get; set; }
 
         [Required]
@@ -28,5 +27,13 @@ namespace FV8H3R_HFT_2021221.Models
         public DateTime RegDate { get; set; }
 
         public int AvailableLikes { get; set; }
+
+        [NotMapped]
+        public virtual ICollection<Match> matches { get; set; }
+
+        public User()
+        {
+            matches = new HashSet<Match>();
+        }
     }
 }
