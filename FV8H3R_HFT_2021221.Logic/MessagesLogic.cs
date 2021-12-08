@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Logic
 {
-    public class MessagesLogic : ILogic
+    public class MessagesLogic : ILogic<Message>
     {
         IRepository<Message> msgRepo;
 

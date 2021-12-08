@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FV8H3R_HFT_2021221.Logic
 {
-    class UsersLogic : ILogic
+    class UsersLogic : ILogic<User>
     {
         IRepository<User> userRepo;
 

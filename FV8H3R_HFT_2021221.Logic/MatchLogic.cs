@@ -1,4 +1,5 @@
 ﻿using FV8H3R_HFT_2021221.Models;
+using FV8H3R_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,21 @@ using System.Threading.Tasks;
 
 namespace FV8H3R_HFT_2021221.Logic
 {
-    public class MatchLogic : ILogic
+    public class MatchLogic : ILogic<Match>
     {
-        public void Create(Message newMessage)
+        IRepository<Match> matchRepo;
+
+        public MatchLogic(IRepository<Match> matchRepo)
+        {
+            this.matchRepo = matchRepo;
+        }
+
+        public void Create(Match newMessage)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Message forDelete)
+        public void Delete(Match forDelete)
         {
             throw new NotImplementedException();
         }
@@ -24,17 +32,17 @@ namespace FV8H3R_HFT_2021221.Logic
             throw new NotImplementedException();
         }
 
-        public IList<Message> ReadAll()
+        public IList<Match> ReadAll()
         {
             throw new NotImplementedException();
         }
 
-        public Message ReadOne(int id)
+        public Match ReadOne(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Message updated)
+        public void Update(Match updated)
         {
             throw new NotImplementedException();
         }

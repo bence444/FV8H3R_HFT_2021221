@@ -3,13 +3,13 @@ using FV8H3R_HFT_2021221.Models;
 
 namespace FV8H3R_HFT_2021221.Logic
 {
-    public interface ILogic
+    public interface ILogic<T>
     {
-        Message ReadOne(int id);
-        IList<Message> ReadAll();
-        void Update(Message updated);
-        void Create(Message newMessage);
-        void Delete(Message forDelete);
+        T ReadOne(int id);
+        IList<T> ReadAll();
+        void Update(T updated);
+        void Create(T newMessage);
+        void Delete(T forDelete);
         void Delete(int id);
     }
 }
