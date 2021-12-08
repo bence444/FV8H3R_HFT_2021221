@@ -52,5 +52,25 @@ namespace FV8H3R_HFT_2021221.Logic
 
             return mm;
         }
+
+        public IEnumerable<Message> MessageOf(string name)
+        {
+            var mo = from msg in msgRepo.ReadAll()
+                     join user in userRepo.ReadAll() on msg.SenderId equals user.Id
+                     where user.Name.Contains(name)
+                     select msg;
+
+            return mo;
+        }
+
+        public IEnumerable<User> UsersWithTrustIssues()
+        {
+            var to = from user in userRepo.ReadAll()
+                     join msg in msgRepo.ReadAll() on user.Id equals msg.SenderId
+                     where msg.Deleted
+                     select user;
+
+            return to;
+        }
     }
 }
