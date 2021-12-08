@@ -75,19 +75,169 @@ namespace FV8H3R_HFT_2021221.Test
             msgRepo.Verify(x => x.ReadOne(It.IsAny<int>()), Times.Once);
         }
 
+        [Test]
         public void UpdateUserTest()
         {
             userRepo.Setup(x => x.Update(It.IsAny<int>(), It.IsAny<User>()));
 
             UserLogic userLog = new UserLogic(userRepo.Object);
 
-            var testUser = new User() { Id = 1, Name = "Teszt Elek", Bio = "haha" };
-            userLog.Create(testUser);
+            List<User> users = new List<User>()
+            {
+                new User() { Id = 1, Name = "Teszt Elek", Bio = "haha" },
+                new User() { Id = 2, Name = "Joseph Sayer", Bio = "" }
+            };
 
-            testUser.Bio = "im scared jk";
-            userLog.Update(testUser.Id, testUser);
+            users[1].Bio = "no no no";
+            userLog.Update(users[1].Id, users[1]);
 
             userRepo.Verify(x => x.Update(It.IsAny<int>(), It.IsAny<User>()));
+        }
+
+        [Test]
+        public void UsersWithDeletedMatch()
+        {
+            List<User> users = new List<User>()
+            {
+                new User() { Id = 1, Name = "Teszt Elek", Bio = "haha" },
+                new User() { Id = 2, Name = "Joseph Sayer", Bio = "" },
+                new User() { Id = 3, Name = "Krubi Banán", Bio = "banán" },
+                new User() { Id = 4, Name = "Palvin Barbi", Bio = "" }
+            };
+
+            List<Models.Match> matches = new List<Models.Match>()
+            {
+                new Models.Match() { Id = 1, User_1 = users[2].Id, User_2 = users[3].Id, DeletedMatch = true },
+                new Models.Match() { Id = 2, User_1 = users[0].Id, User_2 = users[1].Id, DeletedMatch = false },
+                new Models.Match() { Id = 3, User_1 = users[0].Id, User_2 = users[3].Id, DeletedMatch = false }
+            };
+
+            List<User> expected = new List<User>() { users[2], users[3] };
+
+            userRepo.Setup(x => x.ReadAll()).Returns(users.AsQueryable());
+            matchRepo.Setup(x => x.ReadAll()).Returns(matches.AsQueryable());
+
+            StatsLogic logic = new StatsLogic(userRepo.Object, matchRepo.Object, msgRepo.Object);
+
+            var results = logic.UsersWithDeletedMatch();
+
+            Assert.That(results, Is.EquivalentTo(expected));
+
+            userRepo.Verify(x => x.ReadAll(), Times.AtLeastOnce);
+            matchRepo.Verify(x => x.ReadAll(), Times.AtLeastOnce);
+        }
+
+        [Test]
+        public void MostMsgSentByUser()
+        {
+            List<User> users = new List<User>()
+            {
+                new User() { Id = 1, Name = "Teszt Elek", Bio = "haha" },
+                new User() { Id = 2, Name = "Joseph Sayer", Bio = "" },
+                new User() { Id = 3, Name = "Krubi Banán", Bio = "banán" },
+                new User() { Id = 4, Name = "Palvin Barbi", Bio = "" }
+            };
+
+            List<Message> messages = new List<Message>()
+            {
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[1].Id },
+                new Message() { SenderId = users[2].Id },
+                new Message() { SenderId = users[2].Id },
+            };
+
+            List<User> expected = new List<User>() { users[0], users[2], users[1] };
+
+            userRepo.Setup(x => x.ReadAll()).Returns(users.AsQueryable());
+            msgRepo.Setup(x => x.ReadAll()).Returns(messages.AsQueryable());
+
+            StatsLogic logic = new StatsLogic(userRepo.Object, matchRepo.Object, msgRepo.Object);
+
+            var results = logic.MostMsgSentByUser();
+
+            Assert.That(results, Is.EquivalentTo(expected));
+
+            userRepo.Verify(x => x.ReadAll(), Times.AtLeastOnce);
+            msgRepo.Verify(x => x.ReadAll(), Times.AtLeastOnce);
+        }
+
+        [Test]
+        public void MessageOf()
+        {
+            List<User> users = new List<User>()
+            {
+                new User() { Id = 1, Name = "Teszt Elek", Bio = "haha" },
+                new User() { Id = 2, Name = "Joseph Sayer", Bio = "" },
+                new User() { Id = 3, Name = "Krubi Banán", Bio = "banán" },
+                new User() { Id = 4, Name = "Palvin Barbi", Bio = "" }
+            };
+
+            List<Message> messages = new List<Message>()
+            {
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[1].Id },
+                new Message() { SenderId = users[2].Id },
+                new Message() { SenderId = users[2].Id },
+            };
+
+            List<Message> expected = new List<Message>() { messages[6], messages[7] };
+
+            userRepo.Setup(x => x.ReadAll()).Returns(users.AsQueryable());
+            msgRepo.Setup(x => x.ReadAll()).Returns(messages.AsQueryable());
+
+            StatsLogic logic = new StatsLogic(userRepo.Object, matchRepo.Object, msgRepo.Object);
+
+            var results = logic.MessageOf("Banán");
+
+            Assert.That(results, Is.EquivalentTo(expected));
+
+            userRepo.Verify(x => x.ReadAll(), Times.AtLeastOnce);
+            msgRepo.Verify(x => x.ReadAll(), Times.AtLeastOnce);
+        }
+
+        [Test]
+        public void UsersWithTrustIssues()
+        {
+            List<User> users = new List<User>()
+            {
+                new User() { Id = 1, Name = "Teszt Elek", Bio = "haha" },
+                new User() { Id = 2, Name = "Joseph Sayer", Bio = "" },
+                new User() { Id = 3, Name = "Krubi Banán", Bio = "banán" },
+            };
+
+            List<Message> messages = new List<Message>()
+            {
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id },
+                new Message() { SenderId = users[0].Id, Deleted = true },
+                new Message() { SenderId = users[0].Id, Deleted = true },
+                new Message() { SenderId = users[1].Id },
+                new Message() { SenderId = users[2].Id },
+                new Message() { SenderId = users[2].Id },
+            };
+
+            List<User> expected = new List<User>() { users[0] };
+
+            userRepo.Setup(x => x.ReadAll()).Returns(users.AsQueryable());
+            msgRepo.Setup(x => x.ReadAll()).Returns(messages.AsQueryable());
+
+            StatsLogic logic = new StatsLogic(userRepo.Object, matchRepo.Object, msgRepo.Object);
+
+            var results = logic.UsersWithTrustIssues();
+
+            Assert.That(results, Is.EquivalentTo(expected));
+
+            userRepo.Verify(x => x.ReadAll(), Times.AtLeastOnce);
+            msgRepo.Verify(x => x.ReadAll(), Times.AtLeastOnce);
         }
     }
 }

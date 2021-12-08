@@ -23,13 +23,23 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public IEnumerable<User> UsersWithDeletedMatch()
         {
+            /* var ur = from user in userRepo.ReadAll()
+                     join match in matchRepo.ReadAll() on new { u1 = user.Id, u2 = user2.Id } equals new { match.User_1, match.User_2 }
+                     //join match2 in matchRepo.ReadAll() on user.Id equals match2.User_2
+                     where match.DeletedMatch //&& match2.DeletedMatch
+                     select user; */
+
             var ur = from user in userRepo.ReadAll()
                      join match in matchRepo.ReadAll() on user.Id equals match.User_1
-                     join match2 in matchRepo.ReadAll() on user.Id equals match2.User_2
-                     where match.DeletedMatch || match2.DeletedMatch
+                     where match.DeletedMatch
                      select user;
 
-            return ur;
+            var ur2 = from user in userRepo.ReadAll()
+                      join match in matchRepo.ReadAll() on user.Id equals match.User_2
+                      where match.DeletedMatch
+                      select user;
+
+            return ur.Concat(ur2);
         }
 
         public IQueryable MostMsgSentByUser()
@@ -37,6 +47,7 @@ namespace FV8H3R_HFT_2021221.Logic
             var um = from user in userRepo.ReadAll()
                      join msg in msgRepo.ReadAll() on user.Id equals msg.SenderId
                      group user by user.Name into u
+                     orderby u.Key.Count()
                      select new { Name = u.Key, Count = u.Key.Count() };
 
             return um;
@@ -65,10 +76,10 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public IEnumerable<User> UsersWithTrustIssues()
         {
-            var to = from user in userRepo.ReadAll()
+            var to = (from user in userRepo.ReadAll()
                      join msg in msgRepo.ReadAll() on user.Id equals msg.SenderId
                      where msg.Deleted
-                     select user;
+                     select user).Distinct();
 
             return to;
         }
