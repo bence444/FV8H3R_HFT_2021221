@@ -17,7 +17,7 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public void Create(Message newMessage)
         {
-            if (newMessage.MessagesSent.Length < 1)
+            if (newMessage.MessageSent.Length < 1)
                 throw new ArgumentException(nameof(newMessage), "Message length must be at least 1 character");
 
             msgRepo.Create(newMessage);
@@ -50,7 +50,7 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public double AverageLength()
         {
-            return (double)msgRepo.ReadAll().Average(x => x.MessagesSent.Length);
+            return (double)msgRepo.ReadAll().Average(x => x.MessageSent.Length);
         }
     }
 }

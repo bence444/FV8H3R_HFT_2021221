@@ -59,11 +59,11 @@ namespace FV8H3R_HFT_2021221.Data
             Match hp = new Match() { Id = 3, User_1 = hypy.Id, User_2 = petra.Id };
             Match pe = new Match() { Id = 4, User_1 = petra.Id, User_2 = elon.Id };
 
-            Message dlm = new Message() { Id = 1, MatchId = dl.Id, SenderId = duri.Id, MessagesSent = "szia"};
-            Message dlm2 = new Message() { Id = 2, MatchId = dl.Id, SenderId = laci.Id, MessagesSent = "szia date?"};
+            Message dlm = new Message() { Id = 1, MatchId = dl.Id, SenderId = duri.Id, MessageSent = "szia"};
+            Message dlm2 = new Message() { Id = 2, MatchId = dl.Id, SenderId = laci.Id, MessageSent = "szia date?"};
 
-            Message hlm = new Message() { Id = 3, MatchId = hl.Id, SenderId = hypy.Id, MessagesSent = "szia randi?", Deleted = true };
-            Message hlm2 = new Message() { Id = 4, MatchId = hl.Id, SenderId = luca.Id, MessagesSent = "bocsi nem :(", Deleted = true };
+            Message hlm = new Message() { Id = 3, MatchId = hl.Id, SenderId = hypy.Id, MessageSent = "szia randi?", Deleted = true };
+            Message hlm2 = new Message() { Id = 4, MatchId = hl.Id, SenderId = luca.Id, MessageSent = "bocsi nem :(", Deleted = true };
 
             dl.Messages.Add(dlm);
             dl.Messages.Add(dlm2);

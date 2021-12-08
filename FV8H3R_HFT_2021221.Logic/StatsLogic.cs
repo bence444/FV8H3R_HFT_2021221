@@ -42,24 +42,23 @@ namespace FV8H3R_HFT_2021221.Logic
             return ur.Concat(ur2);
         }
 
-        public IQueryable MostMsgSentByUser()
+        public IEnumerable<Message> HighlikesByMsgId()
         {
-            var um = from user in userRepo.ReadAll()
-                     join msg in msgRepo.ReadAll() on user.Id equals msg.SenderId
-                     group user by user.Name into u
-                     orderby u.Key.Count()
-                     select new { Name = u.Key, Count = u.Key.Count() };
+            var um = from msg in msgRepo.ReadAll()
+                     join user in userRepo.ReadAll() on msg.SenderId equals user.Id
+                     where user.AvailableLikes > 10
+                     orderby msg.Id descending
+                     select msg;
 
             return um;
         }
 
-        public IEnumerable<Match> MostMsgSentToMatch()
+        public IEnumerable<Message> MsgsToLastMatch()
         {
-            var mm = (from match in matchRepo.ReadAll()
-                     join msg in msgRepo.ReadAll() on match.Id equals msg.MatchId
-                     group match by match.Id into m
-                     orderby m.Count()
-                     select m).First();
+            var mm = from msg in msgRepo.ReadAll()
+                     join match in matchRepo.ReadAll() on msg.MatchId equals match.Id
+                     where msg.MatchId.Equals(matchRepo.ReadAll().Last().Id)
+                     select msg;
 
             return mm;
         }

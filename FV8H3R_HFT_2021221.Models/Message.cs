@@ -22,7 +22,7 @@ namespace FV8H3R_HFT_2021221.Models
 
         public int SenderId { get; set; }
 
-        public string MessagesSent { get; set; }
+        public string MessageSent { get; set; }
         public bool Deleted { get; set; } = false;
 
         [NotMapped]
