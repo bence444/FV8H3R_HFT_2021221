@@ -20,5 +20,37 @@ namespace FV8H3R_HFT_2021221.Logic
             this.matchRepo = matchRepo;
             this.msgRepo = msgRepo;
         }
+
+        public IEnumerable<User> UsersWithDeletedMatch()
+        {
+            var ur = from user in userRepo.ReadAll()
+                     join match in matchRepo.ReadAll() on user.Id equals match.User_1
+                     join match2 in matchRepo.ReadAll() on user.Id equals match2.User_2
+                     where match.DeletedMatch || match2.DeletedMatch
+                     select user;
+
+            return ur;
+        }
+
+        public IQueryable MostMsgSentByUser()
+        {
+            var um = from user in userRepo.ReadAll()
+                     join msg in msgRepo.ReadAll() on user.Id equals msg.SenderId
+                     group user by user.Name into u
+                     select new { Name = u.Key, Count = u.Key.Count() };
+
+            return um;
+        }
+
+        public IEnumerable<Match> MostMsgSentToMatch()
+        {
+            var mm = (from match in matchRepo.ReadAll()
+                     join msg in msgRepo.ReadAll() on match.Id equals msg.MatchId
+                     group match by match.Id into m
+                     orderby m.Count()
+                     select m).First();
+
+            return mm;
+        }
     }
 }
