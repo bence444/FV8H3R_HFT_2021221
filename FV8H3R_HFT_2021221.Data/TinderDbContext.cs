@@ -73,7 +73,7 @@ namespace FV8H3R_HFT_2021221.Data
 
             modelBuilder.Entity<User>().HasData(duri, laci, hypy, luca, petra, elon);
             modelBuilder.Entity<Match>().HasData(dl, hl, hp, pe);
-            modelBuilder.Entity<Message>().HasData(dlm, hlm);
+            modelBuilder.Entity<Message>().HasData(dlm, dlm2, hlm, hlm2);
         }
     }
 }

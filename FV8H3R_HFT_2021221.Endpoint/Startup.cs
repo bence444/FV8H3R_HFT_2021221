@@ -22,7 +22,7 @@ namespace FV8H3R_HFT_2021221.Endpoint
         {
             services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
-            services.AddTransient<UserLogic, UserLogic>();
+            services.AddTransient<UserLogic>();
             services.AddTransient<MatchLogic, MatchLogic>();
             services.AddTransient<MessageLogic, MessageLogic>();
 
