@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Repository
 {
-    public class MessagesRepository : IRepository<Message>
+    public class MessagesRepository : IRepository<Message>, IMessageRepository
     {
         TinderDbContext ctx;
 
@@ -30,6 +30,7 @@ namespace FV8H3R_HFT_2021221.Repository
         public void Delete(int id)
         {
             Delete(ReadOne(id));
+            ctx.SaveChanges();
         }
 
         public IQueryable<Message> ReadAll()
@@ -50,6 +51,16 @@ namespace FV8H3R_HFT_2021221.Repository
             msgToUpdate.Deleted = updated.Deleted;
 
             ctx.SaveChanges();
+        }
+
+        public void SendMsg(string text, int matchId, int U1, int U2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UnsendMsg(Message msg)
+        {
+            throw new NotImplementedException();
         }
     }
 }

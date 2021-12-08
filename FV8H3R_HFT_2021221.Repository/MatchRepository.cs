@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Repository
 {
-    public class MatchRepository : IRepository<Match>
+    public class MatchRepository : IRepository<Match>, IMatchRepository
     {
         TinderDbContext ctx;
 
@@ -30,6 +30,7 @@ namespace FV8H3R_HFT_2021221.Repository
         public void Delete(int id)
         {
             Delete(ReadOne(id));
+            ctx.SaveChanges();
         }
 
         public IQueryable<Match> ReadAll()
@@ -49,6 +50,12 @@ namespace FV8H3R_HFT_2021221.Repository
             matchToUpdate.Messages = updated.Messages;
             matchToUpdate.DeletedMatch = updated.DeletedMatch;
 
+            ctx.SaveChanges();
+        }
+
+        public void Unmatch(int id)
+        {
+            ReadOne(id).DeletedMatch = true;
             ctx.SaveChanges();
         }
     }

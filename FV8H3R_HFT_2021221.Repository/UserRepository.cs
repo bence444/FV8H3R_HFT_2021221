@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace FV8H3R_HFT_2021221.Repository
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IRepository<User>, IUserRepository
     {
         TinderDbContext ctx;
 
@@ -30,6 +30,7 @@ namespace FV8H3R_HFT_2021221.Repository
         public void Delete(int id)
         {
             Delete(ReadOne(id));
+            ctx.SaveChanges();
         }
 
         public IQueryable<User> ReadAll()
@@ -42,6 +43,7 @@ namespace FV8H3R_HFT_2021221.Repository
             return ReadAll().FirstOrDefault(x => x.Id == id);
         }
 
+
         public void Update(User updated)
         {
             var userToUpdate = ReadOne(updated.Id);
@@ -51,6 +53,21 @@ namespace FV8H3R_HFT_2021221.Repository
             userToUpdate.AvailableLikes = updated.AvailableLikes;
             
             ctx.SaveChanges();
+        }
+
+        public void RefreshLikes()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ChangeBio(string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ChangeName(string text)
+        {
+            throw new NotImplementedException();
         }
     }
 }
