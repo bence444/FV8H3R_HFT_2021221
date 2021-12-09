@@ -54,19 +54,19 @@ namespace FV8H3R_HFT_2021221.Repository
             ctx.SaveChanges();
         }
 
-        public void RefreshLikes()
+        public void RefreshLikes(int id)
         {
-            throw new NotImplementedException();
+            ReadOne(id).AvailableLikes = 10;
         }
 
-        public void ChangeBio(string text)
+        public void ChangeName(int id, string text)
         {
-            throw new NotImplementedException();
+            ReadOne(id).Name = text;
         }
 
-        public void ChangeName(string text)
+        public void ChangeBio(int id, string text)
         {
-            throw new NotImplementedException();
+            ReadOne(id).Bio = text;
         }
     }
 }

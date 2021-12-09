@@ -57,7 +57,6 @@ namespace FV8H3R_HFT_2021221.Repository
         public void Unmatch(int id)
         {
             ReadOne(id).DeletedMatch = true;
-            ctx.SaveChanges();
         }
     }
 }

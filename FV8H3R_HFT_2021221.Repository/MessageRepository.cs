@@ -54,14 +54,9 @@ namespace FV8H3R_HFT_2021221.Repository
             ctx.SaveChanges();
         }
 
-        public void SendMsg(string text, int matchId, int U1, int U2)
+        public void UnsendMsg(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public void UnsendMsg(Message msg)
-        {
-            throw new NotImplementedException();
+            ReadOne(id).Deleted = true;
         }
     }
 }

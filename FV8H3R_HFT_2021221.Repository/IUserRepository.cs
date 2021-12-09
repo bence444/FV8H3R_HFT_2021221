@@ -9,8 +9,8 @@ namespace FV8H3R_HFT_2021221.Repository
 {
     public interface IUserRepository : IRepository<User>
     {
-        void ChangeName(string text);
-        void ChangeBio(string text);
-        void RefreshLikes();
+        void ChangeName(int id, string text);
+        void ChangeBio(int id, string text);
+        void RefreshLikes(int id);
     }
 }
