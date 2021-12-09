@@ -33,5 +33,10 @@ namespace FV8H3R_HFT_2021221.Models
         [NotMapped]
         [JsonIgnore]
         public virtual User _User_2 { get; set; }
+
+        public override string ToString()
+        {
+            return "{ Id: " + this.Id + " | User1: " + this.User_1 + " | User2: " + this.User_2 + " }";
+        }
     }
 }

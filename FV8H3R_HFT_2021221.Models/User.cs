@@ -35,5 +35,10 @@ namespace FV8H3R_HFT_2021221.Models
         {
             Matches = new HashSet<Match>();
         }
+
+        public override string ToString()
+        {
+            return "{ Id: " + this.Id + " | Name: " + this.Name + " | Bio: " + this.Bio + " | Regdate: " + this.RegDate + " | Likes: " + this.AvailableLikes + " } ";
+        }
     }
 }

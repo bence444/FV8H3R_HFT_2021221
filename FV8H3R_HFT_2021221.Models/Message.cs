@@ -29,5 +29,10 @@ namespace FV8H3R_HFT_2021221.Models
         [NotMapped]
         [JsonIgnore]
         public virtual Match _MatchId { get; set; }
+
+        public override string ToString()
+        {
+            return "{ Id: " + this.Id + " | Match: " + this.MatchId + " | Sender: " + this.SenderId + " | Msg: " + this.MessageSent + " }";
+        }
     }
 }
