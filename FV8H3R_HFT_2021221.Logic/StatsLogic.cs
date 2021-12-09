@@ -57,11 +57,11 @@ namespace FV8H3R_HFT_2021221.Logic
             return mm;
         }
 
-        public IEnumerable<Message> MessageOf(string name = "Elon")
+        public IEnumerable<Message> MessageOf()
         {
             var mo = from msg in msgRepo.ReadAll().ToList()
                      join user in userRepo.ReadAll().ToList() on msg.SenderId equals user.Id
-                     where user.Name.Contains(name)
+                     where user.Name.Contains('a')
                      select msg;
 
             return mo;

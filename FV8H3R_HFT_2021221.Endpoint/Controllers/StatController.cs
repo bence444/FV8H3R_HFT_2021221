@@ -38,9 +38,9 @@ namespace FV8H3R_HFT_2021221.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Message> msgof(string name)
+        public IEnumerable<Message> msgof()
         {
-            return logic.MessageOf(name);
+            return logic.MessageOf();
         }
 
         [HttpGet]

@@ -73,7 +73,7 @@ namespace FV8H3R_HFT_2021221.Client
             });
 
             userMenu.Add("update (user)", () => {
-                Console.WriteLine("user's id: ");
+                Console.Write("user's id: ");
                 int id = int.Parse(Console.ReadLine());
 
                 Console.Write("new name: ");
@@ -82,9 +82,13 @@ namespace FV8H3R_HFT_2021221.Client
                 Console.Write("new bio: ");
                 string bio = Console.ReadLine();
 
+                Console.Write("available likes: ");
+                int likes = int.Parse(Console.ReadLine());
+
                 var user = service.GetSingle<User>("/user/" + id);
                 user.Name = name;
                 user.Bio = bio;
+                user.AvailableLikes = likes;
 
                 service.Put(user, "/user/" + id);
             });
@@ -175,7 +179,7 @@ namespace FV8H3R_HFT_2021221.Client
                 Console.Write("sender's id: ");
                 int sender = int.Parse(Console.ReadLine());
 
-                Console.Write("match's id: : ");
+                Console.Write("match's id: ");
                 int match = int.Parse(Console.ReadLine());
 
                 Console.Write("text: ");
@@ -217,9 +221,43 @@ namespace FV8H3R_HFT_2021221.Client
 
             #region non-curd
             extra.Add("users w/ deleted match", () => {
-                //userwdm
-
                 var results = service.Get<User>("/stat/userwdm");
+
+                foreach (var item in results)
+                    Console.WriteLine(item);
+
+                Console.ReadKey();
+            });
+
+            extra.Add("messages w/ user likes > 10", () => {
+                var results = service.Get<Message>("/stat/highlikes");
+
+                foreach (var item in results)
+                    Console.WriteLine(item);
+
+                Console.ReadKey();
+            });
+
+            extra.Add("last match's messages", () => {
+                var results = service.Get<Message>("/stat/lastchat");
+
+                foreach (var item in results)
+                    Console.WriteLine(item);
+
+                Console.ReadKey();
+            });
+
+            extra.Add("messages where user's name contains 'a'", () => {
+                var results = service.Get<Message>("/stat/msgof");
+
+                foreach (var item in results)
+                    Console.WriteLine(item);
+
+                Console.ReadKey();
+            });
+
+            extra.Add("users with trust issues (deleted messages)", () => {
+                var results = service.Get<User>("/stat/issues");
 
                 foreach (var item in results)
                     Console.WriteLine(item);
