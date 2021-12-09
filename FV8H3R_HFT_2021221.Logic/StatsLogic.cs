@@ -23,13 +23,13 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public IEnumerable<User> UsersWithDeletedMatch()
         {
-            var ur = from user in userRepo.ReadAll()
-                     join match in matchRepo.ReadAll() on user.Id equals match.User_1
+            var ur = from user in userRepo.ReadAll().ToList()
+                     join match in matchRepo.ReadAll().ToList() on user.Id equals match.User_1
                      where match.DeletedMatch
                      select user;
 
-            var ur2 = from user in userRepo.ReadAll()
-                      join match in matchRepo.ReadAll() on user.Id equals match.User_2
+            var ur2 = from user in userRepo.ReadAll().ToList()
+                      join match in matchRepo.ReadAll().ToList() on user.Id equals match.User_2
                       where match.DeletedMatch
                       select user;
 
@@ -38,8 +38,8 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public IEnumerable<Message> HighlikesByMsgId()
         {
-            var um = from msg in msgRepo.ReadAll()
-                     join user in userRepo.ReadAll() on msg.SenderId equals user.Id
+            var um = from msg in msgRepo.ReadAll().ToList()
+                     join user in userRepo.ReadAll().ToList() on msg.SenderId equals user.Id
                      where user.AvailableLikes > 10
                      orderby msg.Id descending
                      select msg;
@@ -49,18 +49,18 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public IEnumerable<Message> MsgsToLastMatch()
         {
-            var mm = from msg in msgRepo.ReadAll()
-                     join match in matchRepo.ReadAll() on msg.MatchId equals match.Id
-                     where msg.MatchId.Equals(matchRepo.ReadAll().Last().Id)
+            var mm = from msg in msgRepo.ReadAll().ToList()
+                     join match in matchRepo.ReadAll().ToList() on msg.MatchId equals match.Id
+                     where msg.MatchId.Equals(matchRepo.ReadAll().ToList().Last().Id)
                      select msg;
 
             return mm;
         }
 
-        public IEnumerable<Message> MessageOf(string name)
+        public IEnumerable<Message> MessageOf(string name = "Elon")
         {
-            var mo = from msg in msgRepo.ReadAll()
-                     join user in userRepo.ReadAll() on msg.SenderId equals user.Id
+            var mo = from msg in msgRepo.ReadAll().ToList()
+                     join user in userRepo.ReadAll().ToList() on msg.SenderId equals user.Id
                      where user.Name.Contains(name)
                      select msg;
 
@@ -69,8 +69,8 @@ namespace FV8H3R_HFT_2021221.Logic
 
         public IEnumerable<User> UsersWithTrustIssues()
         {
-            var to = (from user in userRepo.ReadAll()
-                     join msg in msgRepo.ReadAll() on user.Id equals msg.SenderId
+            var to = (from user in userRepo.ReadAll().ToList()
+                     join msg in msgRepo.ReadAll().ToList() on user.Id equals msg.SenderId
                      where msg.Deleted
                      select user).Distinct();
 
