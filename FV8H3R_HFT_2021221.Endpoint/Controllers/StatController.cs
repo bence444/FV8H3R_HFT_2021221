@@ -19,11 +19,11 @@ namespace FV8H3R_HFT_2021221.Endpoint.Controllers
             this.logic = logic;
         }
 
-       [HttpGet]
-       public IEnumerable<User> userwdm()
-       {
+        [HttpGet]
+        public IEnumerable<User> userwdm()
+        {
             return logic.UsersWithDeletedMatch();
-       }
+        }
 
         [HttpGet]
         public IEnumerable<Message> highlikes()

@@ -92,7 +92,7 @@ namespace FV8H3R_HFT_2021221.Client
 
             #region match
             matchMenu.Add("list-all (matches)", () => {
-                var results = service.Get<User>("/match");
+                var results = service.Get<Match>("/match");
 
                 foreach (var item in results)
                     Console.WriteLine(item);
@@ -104,7 +104,7 @@ namespace FV8H3R_HFT_2021221.Client
                 Console.Write("match's id: ");
                 int id = int.Parse(Console.ReadLine());
 
-                var result = service.GetSingle<User>("/match/" + id);
+                var result = service.GetSingle<Match>("/match/" + id);
 
                 Console.WriteLine(result);
                 Console.ReadKey();
@@ -153,7 +153,7 @@ namespace FV8H3R_HFT_2021221.Client
 
             #region message
             msgMenu.Add("list-all (msg)", () => {
-                var results = service.Get<User>("/message");
+                var results = service.Get<Message>("/message");
 
                 foreach (var item in results)
                     Console.WriteLine(item);
@@ -165,7 +165,7 @@ namespace FV8H3R_HFT_2021221.Client
                 Console.Write("message's id: ");
                 int id = int.Parse(Console.ReadLine());
 
-                var result = service.GetSingle<User>("/message/" + id);
+                var result = service.GetSingle<Message>("/message/" + id);
 
                 Console.WriteLine(result);
                 Console.ReadKey();
@@ -219,7 +219,7 @@ namespace FV8H3R_HFT_2021221.Client
             extra.Add("users w/ deleted match", () => {
                 //userwdm
 
-                var results = service.Get<User>("/userwdm");
+                var results = service.Get<User>("/stat/userwdm");
 
                 foreach (var item in results)
                     Console.WriteLine(item);

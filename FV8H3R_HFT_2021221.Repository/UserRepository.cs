@@ -43,7 +43,6 @@ namespace FV8H3R_HFT_2021221.Repository
             return ReadAll().FirstOrDefault(x => x.Id == id);
         }
 
-
         public void Update(int id, User updated)
         {
             var userToUpdate = ReadOne(id);

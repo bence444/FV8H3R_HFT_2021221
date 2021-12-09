@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace FV8H3R_HFT_2021221.Models
 {
@@ -27,13 +28,12 @@ namespace FV8H3R_HFT_2021221.Models
         public int AvailableLikes { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Match> Matches { get; set; }
 
         public User()
         {
             Matches = new HashSet<Match>();
         }
-
-        
     }
 }
