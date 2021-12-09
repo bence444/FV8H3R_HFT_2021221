@@ -47,6 +47,7 @@ namespace FV8H3R_HFT_2021221.Repository
         {
             var msgToUpdate = ReadOne(id);
 
+            msgToUpdate.SenderId = updated.SenderId;
             msgToUpdate.MessageSent = updated.MessageSent;
             msgToUpdate.Deleted = updated.Deleted;
 
