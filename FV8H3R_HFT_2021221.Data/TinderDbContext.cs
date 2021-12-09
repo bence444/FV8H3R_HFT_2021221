@@ -47,7 +47,7 @@ namespace FV8H3R_HFT_2021221.Data
                 .OnDelete(DeleteBehavior.Cascade);
             }); */
 
-            User duri = new User() { Id = 1, Name = "Dorottya", Bio = "van egy kutyám", RegDate = new DateTime(2020, 6, 2) };
+            User duri = new User() { Id = 1, Name = "Dorottya", Bio = "van egy kutyám", RegDate = new DateTime(2020, 6, 2), AvailableLikes = 15 };
             User laci = new User() { Id = 2, Name = "Laszlo", Bio = "", RegDate = new DateTime(2020, 6, 10) };
             User hypy = new User() { Id = 3, Name = "Tamas", Bio = "eszek s*gget", RegDate = new DateTime(2020, 6, 11) };
             User luca = new User() { Id = 4, Name = "Luca", Bio = "", RegDate = new DateTime(2020, 6, 20) };
@@ -65,6 +65,9 @@ namespace FV8H3R_HFT_2021221.Data
             Message hlm = new Message() { Id = 3, MatchId = hl.Id, SenderId = hypy.Id, MessageSent = "szia randi?", Deleted = true };
             Message hlm2 = new Message() { Id = 4, MatchId = hl.Id, SenderId = luca.Id, MessageSent = "bocsi nem :(", Deleted = true };
 
+            Message pem = new Message() { Id = 5, MatchId = pe.Id, SenderId = petra.Id, MessageSent = "henlo" };
+            Message pem2 = new Message() { Id = 6, MatchId = pe.Id, SenderId = elon.Id, MessageSent = "sznia" };
+
             /* dl.Messages.Add(dlm);
             dl.Messages.Add(dlm2);
 
@@ -73,7 +76,7 @@ namespace FV8H3R_HFT_2021221.Data
 
             modelBuilder.Entity<User>().HasData(duri, laci, hypy, luca, petra, elon);
             modelBuilder.Entity<Match>().HasData(dl, hl, hp, pe);
-            modelBuilder.Entity<Message>().HasData(dlm, dlm2, hlm, hlm2);
+            modelBuilder.Entity<Message>().HasData(dlm, dlm2, hlm, hlm2, pem, pem2);
         }
     }
 }
