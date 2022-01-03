@@ -247,7 +247,7 @@ namespace FV8H3R_HFT_2021221.Client
                 Console.ReadKey();
             });
 
-            extra.Add("messages where user's name contains 'a'", () => {
+            extra.Add("messages where user's name contains 'á'", () => {
                 var results = service.Get<Message>("/stat/msgof");
 
                 foreach (var item in results)

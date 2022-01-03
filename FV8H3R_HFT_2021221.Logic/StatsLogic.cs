@@ -61,7 +61,7 @@ namespace FV8H3R_HFT_2021221.Logic
         {
             var mo = from msg in msgRepo.ReadAll().ToList()
                      join user in userRepo.ReadAll().ToList() on msg.SenderId equals user.Id
-                     where user.Name.Contains('a')
+                     where user.Name.Contains('á')
                      select msg;
 
             return mo;

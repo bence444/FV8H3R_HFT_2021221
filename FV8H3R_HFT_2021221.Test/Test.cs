@@ -220,7 +220,7 @@ namespace FV8H3R_HFT_2021221.Test
                 new Message() { SenderId = users[0].Id },
                 new Message() { SenderId = users[1].Id },
                 new Message() { SenderId = users[2].Id },
-                new Message() { SenderId = users[2].Id },
+                new Message() { SenderId = users[2].Id }
             };
 
             List<Message> expected = new List<Message>() { messages[6], messages[7] };
@@ -230,7 +230,7 @@ namespace FV8H3R_HFT_2021221.Test
 
             StatsLogic logic = new StatsLogic(userRepo.Object, matchRepo.Object, msgRepo.Object);
 
-            var results = logic.MessageOf("Banán");
+            var results = logic.MessageOf();
 
             Assert.That(results, Is.EquivalentTo(expected));
 
